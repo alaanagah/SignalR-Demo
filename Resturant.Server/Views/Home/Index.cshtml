@@ -1,0 +1,43 @@
+﻿@model Resturant.Services.Models.Order
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1> Create New Order</h1>
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, htmlAttributes: new { id = "Myfrm" }))
+{
+    <div class="form-horizontal">
+        <div class="row">
+            @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.TotalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(m => m.TotalPrice, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="row">
+
+            @Html.LabelFor(m => m.OrderNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(m => m.OrderNumber, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="row">
+            @Html.LabelFor(m => m.OrderType, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(m => m.OrderType, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <br />
+        <br />
+        <div class="row">
+            <div class=" col-md-6">
+                <button type="submit" value="Create" id="subbtn" class="btn btn-success">
+                    <i class="fa fa-plus"></i>
+                    <span class="hidden-480">
+                        Create
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+}

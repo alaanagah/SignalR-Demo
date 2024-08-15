@@ -1,0 +1,37 @@
+﻿
+@model List<Resturant.Services.Models.Order>
+<h2>Oders List </h2>
+
+
+<div id="ordersList">
+    @foreach (var order in Model)
+    {
+        <div class="panel panel-warning ">
+            <div class="panel-heading">@order.Name</div><div class="panel-body"> <ul> <li>Id : @order.Id</li><li>TotalPrice : @order.TotalPrice</li><li>OrderType : @order.OrderType</li></ul> </div>
+        </div>
+    }
+
+</div>
+
+@section Scripts{
+
+    <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
+    <script src="https://localhost:44311/signalr/js"></script>
+    <script>
+
+        $.connection.hub.url = "https://localhost:44311/signalr";
+        // var connection = $.hubConnection("https://localhost:44311/signalr", { useDefaultPath: false });
+
+        var proxy = $.connection.OrdersHub;
+        $.connection.hub.start().done(
+            function () {
+                alert("Connection Started ")
+            }
+        );
+        proxy.client.UpdateOrdersList = function (order) {
+            $("#ordersList").append("<div class=\"panel panel-warning\"><div class=\"panel-heading\" >" + order.Name + "</div><div class=\"panel-body\"> <ul> <li>Id : " + order.Id + "</li><li>TotalPrice : " + order.TotalPrice + "</li><li>OrderType : " + order.OrderType + "</li></ul> </div></div>");
+        }
+
+    </script>
+}
+
